@@ -72,7 +72,7 @@ def main():
         elif args['decrypt']:
             # Encrypted keys are 188 bytes
             qsize = struct.calcsize('Q')
-            if datalen - (qsize * 2 + 188) >= 4096:
+            if datalen - (qsize + 188) >= 4096:
                 payloadsize = struct.unpack('!Q', indata[0:qsize])[0]
                 iv = indata[qsize:qsize+16]
                 keydata = con.decrypt(indata[qsize+16:qsize+16+188]) 
